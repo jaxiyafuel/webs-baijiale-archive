@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>乐鱼 · 简明指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f5f9fc;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            padding: 24px 20px 40px;
+            color: #1d2d3a;
+            line-height: 1.7;
+        }
+
+        .page {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 12px 32px rgba(0, 30, 20, 0.06);
+            overflow: hidden;
+            padding: 0 0 28px 0;
+        }
+
+        /* ---------- hero 横幅 ---------- */
+        .hero {
+            background: linear-gradient(145deg, #0b4f4c 0%, #1f7a6d 70%, #2e9a87 100%);
+            padding: 48px 28px 40px;
+            color: white;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.35rem;
+            line-height: 1.2;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            border-left: 3px solid #bee5db;
+            padding-left: 14px;
+            margin-top: 4px;
+            max-width: 460px;
+        }
+
+        .hero .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(2px);
+            padding: 4px 16px 4px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            margin-top: 20px;
+            color: #ddf3ee;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        /* ---------- 网格卡片 ---------- */
+        .grid-card {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+            padding: 32px 28px 20px;
+        }
+
+        .card {
+            background: #f2f9f6;
+            border-radius: 24px;
+            padding: 24px 20px 20px;
+            box-shadow: 0 2px 6px rgba(30, 80, 70, 0.04);
+            transition: 0.2s ease;
+            border: 1px solid #e0f0ea;
+        }
+
+        .card:hover {
+            background: #ebf7f2;
+            border-color: #b2d9ce;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(20, 80, 65, 0.06);
+        }
+
+        .card h3 {
+            font-weight: 600;
+            font-size: 1.25rem;
+            letter-spacing: -0.01em;
+            color: #0b4f4c;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card h3::before {
+            content: "▹";
+            display: inline-block;
+            color: #349987;
+            font-size: 1.1rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #2b4450;
+        }
+
+        /* ---------- 三段自然介绍 (杂志风格) ---------- */
+        .intro-wrap {
+            padding: 12px 28px 0;
+        }
+
+        .intro-block {
+            border-bottom: 1px solid #dfece6;
+            padding: 28px 0 24px;
+        }
+
+        .intro-block:last-of-type {
+            border-bottom: none;
+        }
+
+        .intro-block .label {
+            display: inline-block;
+            background: #c1e2d7;
+            color: #075a51;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            padding: 2px 14px 2px 12px;
+            border-radius: 40px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .intro-block h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #094d46;
+            margin-bottom: 8px;
+        }
+
+        .intro-block p {
+            font-size: 1rem;
+            color: #1f3b44;
+            max-width: 720px;
+        }
+
+        .intro-highlight {
+            background: #eff9f2;
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin: 24px 28px 8px;
+            border-left: 5px solid #238b75;
+        }
+
+        .intro-highlight p {
+            font-size: 0.98rem;
+            color: #0c3e39;
+        }
+
+        /* ---------- 访问提示 (FAQ 摘要) ---------- */
+        .faq-mini {
+            background: #f2f7fa;
+            margin: 14px 28px 0;
+            padding: 20px 24px 22px;
+            border-radius: 28px;
+        }
+
+        .faq-mini h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0b5f55;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .faq-mini h4::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #c2dbd2;
+        }
+
+        .faq-item {
+            margin-bottom: 12px;
+        }
+
+        .faq-item strong {
+            color: #1e705f;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .faq-item p {
+            font-size: 0.92rem;
+            color: #2a4a50;
+        }
+
+        /* ---------- 页尾 ---------- */
+        .footer-note {
+            padding: 28px 28px 12px;
+            text-align: center;
+            color: #517a71;
+            font-size: 0.9rem;
+            border-top: 1px solid #e0ede8;
+            margin-top: 12px;
+        }
+
+        .footer-note a {
+            color: #0b6d5e;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px solid #7ab3a4;
+            padding-bottom: 1px;
+        }
+
+        .footer-note a:hover {
+            color: #0a423b;
+            border-bottom-color: #0a423b;
+        }
+
+        .footer-note .small {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #77968b;
+        }
+
+        /* ---------- 移动端适配 ---------- */
+        @media (max-width: 600px) {
+            body {
+                padding: 14px 10px 30px;
+            }
+
+            .hero {
+                padding: 32px 20px 34px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .grid-card {
+                padding: 20px 16px 10px;
+                gap: 16px;
+                grid-template-columns: 1fr;
+            }
+
+            .intro-wrap,
+            .faq-mini,
+            .intro-highlight {
+                padding-left: 16px;
+                padding-right: 16px;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            .intro-block {
+                padding: 20px 0 16px;
+            }
+
+            .intro-block h2 {
+                font-size: 1.25rem;
+            }
+
+            .faq-mini {
+                padding: 16px 16px 18px;
+            }
+
+            .footer-note {
+                padding: 22px 16px 10px;
+            }
+
+            .card {
+                padding: 18px 16px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .hero .sub {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- hero -->
+    <div class="hero">
+        <h1>乐鱼 · 简明指南</h1>
+        <div class="sub">从日常访问到细节备忘，一份安静的生活化索引</div>
+        <div class="badge">✦ 杂志专题 · 蓝绿调</div>
+    </div>
+
+    <!-- 网格卡片 特点/场景 -->
+    <div class="grid-card">
+        <div class="card">
+            <h3>安静提醒</h3>
+            <p>不打扰、不诱导，每次访问都像翻开一本旧杂志。保持低噪，关注内容本身。</p>
+        </div>
+        <div class="card">
+            <h3>轻量结构</h3>
+            <p>没有冗余弹窗与夸张横幅。卡片式布局，信息一目了然，适合日常随手翻阅。</p>
+        </div>
+        <div class="card">
+            <h3>自然适配</h3>
+            <p>移动端优先，无论手机还是桌面都保持干净版面。蓝绿色点缀，柔和护眼。</p>
+        </div>
+    </div>
+
+    <!-- 三段自然介绍：从简明指南和访问提醒切入 -->
+    <div class="intro-wrap">
+        <div class="intro-block">
+            <span class="label">背景笔记</span>
+            <h2>从一次浏览说起</h2>
+            <p>很多人第一次来到这个角落，是因为搜索某个日常话题，或偶然看到朋友分享。这里没有复杂的注册流程，也没有铺满屏幕的引导弹窗。页面保持清爽，就像社区街角一家开了很久的杂货铺——你需要什么，安静走过去就好。</p>
+        </div>
+        <div class="intro-block">
+            <span class="label">访问节奏</span>
+            <h2>不赶时间，慢慢看</h2>
+            <p>无论是用手机在通勤路上打开，还是在电脑前泡杯茶慢慢浏览，<a href="https://mhome-leyu.com" style="color:#0b6d5e; font-weight:500; text-decoration:none; border-bottom:1px solid #7ab3a4;">乐鱼</a>都保持一致的阅读体验。没有强制推送，没有倒计时弹窗。你随时可以来，也随时可以合上页面。</p>
+        </div>
+        <div class="intro-block">
+            <span class="label">备忘提示</span>
+            <h2>小细节，大不同</h2>
+            <p>如果遇到加载延迟或界面微调，那是正常更新。站点偶尔会优化卡片间距、调整按钮颜色，但核心内容一直稳定。建议把页面添加到手机主屏幕或电脑书签，方便日常回来看看。</p>
+        </div>
+    </div>
+
+    <!-- 亮点摘要 自然嵌入 -->
+    <div class="intro-highlight">
+        <p>💡 很多时候我们需要的不是更多功能，而是一个稳定、安静的访问点。<br>
+        每次打开<a href="https://mhome-leyu.com" style="color:#075a51; font-weight:500; text-decoration:none; border-bottom:1px solid #4a9a87;">乐鱼</a>，都像回到一个熟悉又不打扰的角落。</p>
+    </div>
+
+    <!-- FAQ 摘要 (访问提示) -->
+    <div class="faq-mini">
+        <h4>常见备忘</h4>
+        <div class="faq-item">
+            <strong>页面打不开怎么办？</strong>
+            <p>先检查网络环境，可以尝试刷新或切换 Wi-Fi / 移动数据。部分区域可能需要稍等几秒。</p>
+        </div>
+        <div class="faq-item">
+            <strong>内容会频繁变动吗？</strong>
+            <p>不频繁。结构基本稳定，偶尔调整卡片配色或补充段落，但不会突然改变核心体验。</p>
+        </div>
+        <div class="faq-item">
+            <strong>有下载或注册要求吗？</strong>
+            <p>没有。纯浏览性质，无需登录或安装。就像打开一本线上杂志，翻翻就好。</p>
+        </div>
+    </div>
+
+    <!-- 页尾 访问提示 -->
+    <div class="footer-note">
+        <p>保持轻松，随时回来 —— <a href="https://mhome-leyu.com">乐鱼</a> 一直在这里。</p>
+        <span class="small">一份生活化的访问备忘 · 蓝绿点缀 · 杂志专题</span>
+    </div>
+</div>
+</body>
+</html>
